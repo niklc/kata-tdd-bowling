@@ -103,4 +103,19 @@ class BowlingGameTest extends TestCase
 
         self::assertEquals(300, $score);
     }
+
+    // Rainy day:
+    // ✓ Rolls - 1
+    // Rolls 11
+    // Rolls 25 times
+    // rolls 5 times (not enough)
+
+    public function testGetScore_withNegativeRollScore_throwsException()
+    {
+        $game = new BowlingGame();
+
+        self::expectException(Exception::class);
+
+        $game->roll(-1);
+    }
 }

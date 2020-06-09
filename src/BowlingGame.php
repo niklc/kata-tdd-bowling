@@ -2,12 +2,22 @@
 
 namespace PF;
 
+use Exception;
+
 class BowlingGame
 {
     private array $rolls = [];
 
+    /**
+     * @param int $score
+     * @throws Exception
+     */
     public function roll(int $score): void
     {
+        if ($this->isNegativeNumber($score)) {
+            throw new Exception();
+        }
+
         $this->rolls[] = $score;
     }
 
@@ -57,5 +67,10 @@ class BowlingGame
     public function isStrike(int $roll): bool
     {
         return $this->rolls[$roll] === 10;
+    }
+
+    private function isNegativeNumber(int $score): bool
+    {
+        return $score < 0;
     }
 }
