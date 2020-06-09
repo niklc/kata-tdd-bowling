@@ -4,8 +4,7 @@ namespace PF;
 
 class BowlingGame
 {
-    // 7.4 failed
-    private $rolls = [];
+    private array $rolls = [];
 
     public function roll(int $score): void
     {
