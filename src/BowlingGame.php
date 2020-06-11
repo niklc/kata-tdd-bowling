@@ -18,11 +18,27 @@ class BowlingGame
             throw new Exception();
         }
 
+        if ($this->isRollScoreMoreThanMaximum($score)) {
+            throw new Exception();
+        }
+
         $this->rolls[] = $score;
     }
 
+    /**
+     * @return int
+     * @throws Exception
+     */
     public function getScore(): int
     {
+        if ($this->hasLessThanMinimumPossibleRolls()) {
+            throw new Exception();
+        }
+
+        if ($this->hasMoreThanMaximumPossibleRolls()) {
+            throw new Exception();
+        }
+
         $score = 0;
         $roll = 0;
 
@@ -72,5 +88,20 @@ class BowlingGame
     private function isNegativeNumber(int $score): bool
     {
         return $score < 0;
+    }
+
+    private function isRollScoreMoreThanMaximum(int $score): bool
+    {
+        return $score > 10;
+    }
+
+    private function hasMoreThanMaximumPossibleRolls(): bool
+    {
+        return count($this->rolls) > 20;
+    }
+
+    private function hasLessThanMinimumPossibleRolls(): bool
+    {
+        return count($this->rolls) < 12;
     }
 }
